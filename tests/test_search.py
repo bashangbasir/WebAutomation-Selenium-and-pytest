@@ -1,23 +1,30 @@
 """
 These test cover DuckDuckGo searches
 """
-
+from pages.search import DuckDuckGoSearchPage 
+from pages.result import DuckDuckGoResultPage
 
 def test_basic_duckduckgo_search(browser):
     
+    # initialize page object and phrase to search
+    search_page = DuckDuckGoSearchPage(browser)
+    result_page = DuckDuckGoResultPage(browser)
+    PHRASE = "panda"
+
     # given duckduckgo homepage
-    # TODO
+    search_page.load()
 
     # when user searches for "panda"
-    # TODO
+    search_page.search(PHRASE)
 
     # then search result title contain "panda"
-    # TODO
+    assert PHRASE in result_page.title()
 
     # and the search result query is "panda"
-    # TODO
+    assert PHRASE == result_page.search_input_value()
 
     # and the search result links pertain to "panda"
-    # TODO
+    for title in result_page.result_link_titles():
+        assert PHRASE.lower() in title.lower()
     
     raise Exception("incomplete test")
