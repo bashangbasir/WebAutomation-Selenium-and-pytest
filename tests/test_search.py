@@ -17,9 +17,6 @@ def test_basic_duckduckgo_search(browser):
     # when user searches for "panda"
     search_page.search(PHRASE)
 
-    # then search result title contain "panda"
-    assert PHRASE in result_page.title()
-
     # and the search result query is "panda"
     assert PHRASE == result_page.search_input_value()
 
@@ -30,3 +27,6 @@ def test_basic_duckduckgo_search(browser):
         if PHRASE.lower() in t.lower():
             matches.append(t)
     assert len(matches)>0 # return true when there is title in the matches
+
+    # then search result title contain "panda"
+    assert PHRASE in result_page.title()
