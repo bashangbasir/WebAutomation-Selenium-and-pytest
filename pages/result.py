@@ -7,6 +7,9 @@ class DuckDuckGoResultPage:
 
     RESULT_LINK = (By.CSS_SELECTOR,"a.result__a")
     SEARCH_INPUT = (By.ID, "search_form_input")
+    SEARCH_IMAGES = (By.CSS_SELECTOR, "a.zcm__link.js-zci-link.js-zci-link--images")
+    SEARCH_NEWS = (By.CSS_SELECTOR, "a.zcm__link.js-zci-link.js-zci-link--news")
+    SEARCH_VIDEOS = (By.CSS_SELECTOR, "a.zcm__link.js-zci-link.js-zci-link--videos")
 
     def __init__(self, browser):
         self.browser = browser
@@ -28,3 +31,16 @@ class DuckDuckGoResultPage:
 
     def title(self):
         return self.browser.title
+
+    def change_search_type(self,mode):
+        if mode == "news":
+            news_mode = self.browser.find_element(*self.SEARCH_NEWS)
+            news_mode.click()
+        elif mode == "images":
+            images_mode = self.browser.find_element(*self.SEARCH_IMAGES)
+            images_mode.click()
+        elif mode == "videos":
+            videos_mode = self.browser.find_element(*self.SEARCH_VIDEOS)
+            videos_mode.click()
+        else:
+            raise Exception("Wrong mode!")

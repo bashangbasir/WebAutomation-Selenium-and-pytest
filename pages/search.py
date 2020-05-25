@@ -24,4 +24,5 @@ class DuckDuckGoSearchPage:
         # * in the find_element() method will unpack the tuple into this --> (By.ID, "search_form_input_homepage")
         search_input = self.browser.find_element(*self.SEARCH_INPUT)
         search_input.send_keys(phrase + Keys.RETURN)
+
         
