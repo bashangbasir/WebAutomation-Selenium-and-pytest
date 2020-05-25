@@ -15,7 +15,7 @@ def test_basic_duckduckgo_search(browser):
     search_page.search(PHRASE)
     
     # and click news
-    result_page.change_search_type("news")
+    result_page.change_search_type("images")
 
     # then the search result query is "panda"
     assert PHRASE == result_page.search_input_value()
@@ -24,11 +24,10 @@ def test_basic_duckduckgo_search(browser):
     assert PHRASE in result_page.title()
 
     # and the search result links pertain to "panda"
-    titles = result_page.result_link_titles("news")
+    titles = result_page.result_link_titles("images")
     matches = []
     for t in titles:
         if PHRASE.lower() in t.lower():
             matches.append(t)
-    assert len(matches)>0 # return true when there is title in the matches
-
+    assert len(matches)>0
     
